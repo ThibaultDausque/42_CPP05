@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <ostream>
+# include <stdexcept>
 
 class Bureaucrat
 {
@@ -21,8 +22,8 @@ class Bureaucrat
 		int			upGrade();
 		void		GradeTooHighException(int grade);
 		void		GradeTooLowException(int grade);
-		friend std::ostream&	operator<<(std::ostream& os, const Bureaucrat& src);
 };
 
+std::ostream&	operator<<(std::ostream& os, const Bureaucrat& src);
 
 #endif 

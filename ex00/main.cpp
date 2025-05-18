@@ -2,16 +2,18 @@
 
 int	main()
 {
-	Bureaucrat*	toto;
+	Bureaucrat*	toto = new Bureaucrat();
 
 	try
 	{
-		std::cout << toto << std::endl;
+		std::cout << *toto << std::endl;
+		toto->GradeTooLowException(toto->getGrade());
+		toto->GradeTooHighException(toto->getGrade());
 	}
 	catch (std::exception & e)
 	{
-		toto->GradeTooHighException(toto->getGrade());
-		toto->GradeTooLowException(toto->getGrade());
+		std::cout << e.what() << std::endl;
 	}
+	delete toto;
 	return 0;
 }
