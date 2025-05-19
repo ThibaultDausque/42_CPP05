@@ -3,7 +3,7 @@
 
 # include <iostream>
 # include <ostream>
-# include <stdexcept>
+# include <exception>
 
 class Form
 {
@@ -21,9 +21,24 @@ class Form
 		const std::string	getName() const;
 		const int	execGrade() const;
 		const int	signGrade() const;
-		void		GradeTooHighException(int grade);
-		void		GradeTooLowException(int grade);
-		
+		int	beSigned(Bureaucrat& src);
+	class GradeTooHighException : public std::exception
+	{
+		public:
+			virtual const char*	what() const throw()
+			{
+				return "* grade too high *";
+			}
+	};
+	class GradeTooLowException : public std::exception
+	{
+		public:
+			virtual const char*	what() const throw()
+			{
+				return "* grade too low *";
+			}
+	};
+
 };
 
 std::ostream&	operator<<(std::ostream& os, const Form& src);

@@ -22,6 +22,20 @@ Form&	Form::operator=(const Form& src)
 	return *this;
 }
 
+int	Form::beSigned(Bureaucrat& src)
+{
+	if (src.getGrade() < this->_sign_it)
+	{
+		throw Form::GradeTooHighException();
+		return 0;
+	} else if (src.getGrade() > this->_sign_it)
+	{
+		throw Form::GradeTooLowException;
+		return 0;
+	}
+	return this->_signed = 1;
+}
+
 const int	Form::execGrade()
 {
 	return this->_execute_it;
@@ -30,16 +44,4 @@ const int	Form::execGrade()
 const int Form::signGrade()
 {
 	return this->_sign_it;
-}
-
-void	Form::GradeTooHighException(int grade)
-{
-	if (grade < 1)
-		std::domain_error("The grade is too high");
-}
-
-void	Form::GradeTooLowException()
-{
-	if (grade > 150)
-		std::domain_error("The grade is too low");
 }

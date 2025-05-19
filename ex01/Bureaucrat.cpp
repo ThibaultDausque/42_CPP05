@@ -38,6 +38,18 @@ std::ostream&	operator<<(std::ostream& os, const Bureaucrat& src)
 	return os;
 }
 
+int	Bureaucrat::signForm(Form& src)
+{
+	if (src.beSigned == 1)
+	{
+		std::cout << this->getName() << " signed " << src.getName();
+		return 0;
+	}
+	std::cout << this->getName() << " couldn't sign " << src.getName()
+		<< " because he is dumb as fuck." << std::endl;
+	return 1;
+}
+
 const std::string	Bureaucrat::getName() const
 {
 	return this->_name;

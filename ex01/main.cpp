@@ -3,17 +3,17 @@
 int	main()
 {
 	Bureaucrat*	toto = new Bureaucrat();
+	Form*	note = new Form();
 
 	try
 	{
 		std::cout << *toto << std::endl;
-		toto->GradeTooLowException(toto->getGrade());
-		toto->GradeTooHighException(toto->getGrade());
 	}
-	catch (std::exception & e)
+	catch (Bureaucrat::GradeTooHighException& e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
+	catch ()
 	delete toto;
 	return 0;
 }
