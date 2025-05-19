@@ -4,15 +4,18 @@ int	main()
 {
 	Bureaucrat*	toto = new Bureaucrat();
 
+	toto->downGrade();
 	try
 	{
 		std::cout << *toto << std::endl;
-		toto->GradeTooLowException(toto->getGrade());
-		toto->GradeTooHighException(toto->getGrade());
 	}
-	catch (std::exception & e)
+	catch (const Bureaucrat::gradeTooHighException& e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
+	}
+	catch (const Bureaucrat::gradeTooLowException& e)
+	{
+		std::cerr << e.what() << std::endl;
 	}
 	delete toto;
 	return 0;
