@@ -1,5 +1,6 @@
 CC = c++
 SRCS = Bureaucrat.cpp \
+	   Form.cpp \
 	   main.cpp
 FLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f

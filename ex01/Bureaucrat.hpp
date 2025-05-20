@@ -4,6 +4,9 @@
 # include <iostream>
 # include <ostream>
 # include <exception>
+# include "Form.hpp"
+
+class Form;
 
 class Bureaucrat
 {
@@ -20,8 +23,8 @@ class Bureaucrat
 		int		getGrade() const;
 		int		downGrade();
 		int		upGrade();
-		int		signForm(Form& src);
-	class gradeTooHighException : public std::exception
+		int		signForm(Form &src);
+	class GradeTooHighException : public std::exception
 	{
 		public:
 			virtual const char*	what() const throw()
@@ -29,7 +32,7 @@ class Bureaucrat
 				return "* grade too high *";
 			}
 	};
-	class gradeTooLowException : public std::exception
+	class GradeTooLowException : public std::exception
 	{
 		public:
 			virtual const char*	what() const throw()

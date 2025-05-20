@@ -1,19 +1,33 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int	main()
 {
-	Bureaucrat*	toto = new Bureaucrat();
-	Form*	note = new Form();
+	Bureaucrat	toto;
+	Form	note;
 
 	try
 	{
-		std::cout << *toto << std::endl;
+		std::cout << toto << std::endl;
+		toto.signForm(note);
+		std::cout << note;
+		note.beSigned(toto);
 	}
 	catch (Bureaucrat::GradeTooHighException& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	catch ()
-	delete toto;
+	catch (Bureaucrat::GradeTooLowException& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch (Form::GradeTooHighException& f)
+	{
+		std::cerr << f.what() << std::endl;
+	}
+	catch (Form::GradeTooLowException& g)
+	{
+		std::cerr << g.what() << std::endl;
+	}
 	return 0;
 }
