@@ -32,7 +32,7 @@ class Form
 		public:
 			virtual const char*	what() const throw()
 			{
-				return "* grade too high to sign *";
+				return "*form grade too high *";
 			}
 	};
 	class GradeTooLowException : public std::exception
@@ -40,7 +40,7 @@ class Form
 		public:
 			virtual const char*	what() const throw()
 			{
-				return "* grade too low to sign *";
+				return "* form grade too low *";
 			}
 	};
 };

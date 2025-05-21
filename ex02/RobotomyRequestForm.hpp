@@ -3,17 +3,18 @@
 
 # include <iostream>
 # include "Bureaucrat.hpp"
+# include "AForm";
 
 class Bureaucrat;
 
-class RobotomyRequestForm : public Form
+class RobotomyRequestForm : public AForm
 {
 	public:
 		RobotomyRequestForm();
 		RobotomyRequestForm(const RobotomyRequestForm& cpy);
 		RobotomyRequestForm& operator=(const RobotomyRequestForm & src);
 		~RobotomyRequestForm();
-		void	informs(Bureaucrat& target);
+		void	informs(const std::string &target);
 };
 
 #endif

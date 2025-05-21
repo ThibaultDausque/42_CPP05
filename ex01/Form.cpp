@@ -1,6 +1,6 @@
 #include "Form.hpp"
 
-Form::Form(): _name("paper"), _sign_it(42), _execute_it(42)
+Form::Form(): _name("paper"), _sign_it(0), _execute_it(42)
 {
 	this->_signed = 0;
 }
@@ -24,8 +24,18 @@ Form&	Form::operator=(const Form& src)
 
 std::ostream&	operator<<(std::ostream& os, Form& src)
 {
-	if (src.getSigned() == 1)
-		os << "He signed the " << src.getName() << " form.";
+	if (src.signGrade() < 1 || src.execGrade() < 1)
+	{
+		throw Form::GradeTooHighException();
+		return os;
+	}
+	else if (src.signGrade() > 150 || src.execGrade() > 150)
+	{
+		throw Form::GradeTooLowException();
+		return os;
+	}
+	os << "Form " << src.getName() << " exec grade " << src.execGrade()
+		<< ", sign grade " << src.signGrade();
 	return os;
 }
 
@@ -41,17 +51,14 @@ int	Form::getSigned()
 
 int	Form::beSigned(Bureaucrat &src)
 {
-	if (src.getGrade() < this->_sign_it || src.getGrade() < this->_execute_it)
+	if (src.getGrade() <= this->_sign_it && this->signGrade() >= 1
+		&& this->signGrade() <= 150)
 	{
-		throw Form::GradeTooHighException();
-		return 0;
+		this->_signed = 1;
+		return 1;
 	}
-	else if (src.getGrade() > this->_sign_it || src.getGrade() > this->_execute_it)
-	{
-		throw Form::GradeTooLowException();
-		return 0;
-	}
-	this->_signed = 1;
+	else if (this->signGrade() < 1 || this->signGrade() > 150)
+		return 2;
 	return 0;
 }
 

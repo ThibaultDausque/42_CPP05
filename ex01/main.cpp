@@ -11,7 +11,6 @@ int	main()
 		std::cout << toto << std::endl;
 		toto.signForm(note);
 		std::cout << note;
-		note.beSigned(toto);
 	}
 	catch (Bureaucrat::GradeTooHighException& e)
 	{
