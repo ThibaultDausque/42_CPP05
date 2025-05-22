@@ -38,7 +38,7 @@ std::ostream&	operator<<(std::ostream& os, const Bureaucrat& src)
 	return os;
 }
 
-int	Bureaucrat::signForm(Form &src)
+int	Bureaucrat::signForm(AForm &src)
 {
 	if (this->getGrade() == src.execGrade()
 		&& this->getGrade() == src.signGrade())

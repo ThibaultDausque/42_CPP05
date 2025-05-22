@@ -10,7 +10,7 @@ class Bureaucrat;
 
 class AForm
 {
-	private:
+	protected:
 		const std::string	_name;
 		bool	_signed;
 		const int	_sign_it;
@@ -18,6 +18,7 @@ class AForm
 	
 	public:
 		AForm();
+		AForm(const std::string _name, bool _signed, const int _sign_it, const int _execute_it);
 		AForm(const AForm& cpy);
 		AForm&	operator=(const AForm& src);
 		virtual ~AForm();
@@ -25,7 +26,7 @@ class AForm
 		int	execGrade() const;
 		int	signGrade() const;
  		virtual int	beSigned(Bureaucrat &src) = 0;
-		int	getSigned();
+		int	getSigned() const;
 
 	class GradeTooHighException : public std::exception
 	{

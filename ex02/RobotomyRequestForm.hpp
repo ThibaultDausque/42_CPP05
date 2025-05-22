@@ -9,6 +9,9 @@ class Bureaucrat;
 
 class RobotomyRequestForm : public AForm
 {
+	private:
+		std::string	_target;
+
 	public:
 		RobotomyRequestForm();
 		RobotomyRequestForm(const RobotomyRequestForm& cpy);

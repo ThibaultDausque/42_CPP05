@@ -5,14 +5,14 @@
 int	main()
 {
 	AForm	*a = new ShrubberyCreationForm();
-	Bureaucrat	*toto;
+	Bureaucrat	*toto = new Bureaucrat();
 	
 	try
 	{
 		std::cout << *toto << std::endl;
 		std::cout << *a << std::endl;
 	}
-	catch (AForm &e)
+	catch (AForm::GradeTooHighException &e)
 	{
 		std::cout << e.what() << std::endl;
 	}

@@ -2,7 +2,9 @@ CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 SRC = main.cpp \
-	ShrubberyCreationForm.cpp
+		Bureaucrat.cpp \
+		ShrubberyCreationForm.cpp \
+		AForm.cpp
 OBJS_DIR = obj
 OBJS = $(SRC:%.cpp=$(OBJS_DIR)/%.o)
 

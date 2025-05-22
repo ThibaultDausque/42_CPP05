@@ -1,10 +1,8 @@
 #include "ShrubberyCreationForm.hpp"
-#include "Bureaucrat.hpp"
-#include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreation", 0, 145, 137)
 {
-
+	this->_target = "toto";
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& cpy) : AForm(cpy)
@@ -20,28 +18,31 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationForm& src)
 {
 	if (this != &src)
-		this->_signed = src._signed;
+	{
+		this->_signed = src.getSigned();
+		this->_target = src.getTarget();
+	}
 	return *this;
 }
 
 std::ostream& operator<<(std::ostream& os, ShrubberyCreationForm& src)
 {
-	if (this->_sign_it < 1 || this->_execute_it < 1)
+	if (src.signGrade() < 1 || src.execGrade() < 1)
 	{
-		throw AForm::GradeTooHighException;
+		throw AForm::GradeTooHighException();
 		return os;
 	}
-	else if (this->_sign_it > 150 || this->_execute_it > 150)
+	else if (src.signGrade() > 150 || src.execGrade() > 150)
 	{
-		throw AForm::GradeTooLowException;
+		throw AForm::GradeTooLowException();
 		return os;
 	}
-	os << "ShrubberyCreationForm " << this->_name << ", sign grade "
-		<< this->_sign_it << ", execute grade " << this->_execute_it << " .";
+	os << "ShrubberyCreationForm " << src.getName() << ", sign grade "
+		<< src.signGrade() << ", execute grade " << src.execGrade() << " .";
 	return os;
 }
 
-int	ShrubberyCreationForm::beSigned(const Bureaucrat& src)
+int	ShrubberyCreationForm::beSigned(Bureaucrat& src)
 {
 	if (src.getGrade() <= this->_sign_it && this->signGrade() >= 1
 		&& this->signGrade() <= 150)
@@ -56,31 +57,32 @@ int	ShrubberyCreationForm::beSigned(const Bureaucrat& src)
 
 void	ShrubberyCreationForm::asciiTrees(std::string target)
 {
-	std::string		filename;
-	std::ofstream	treeFile;
+	std::ofstream	treeFile(target + "_shrubbery");
 	int		i;
-	filename = target + "_shrubbery";
-	treeFile(filename);
 	
 	i = 0;
 	while (i < 3)
 	{	
-		treeFile <<	           \/ |    |/ << std::endl;
-		treeFile <<	        \/ / \||/  /_/___/_ << std::endl;
-		treeFile <<	         \/   |/ \/ << std::endl
-		treeFile <<	    _\__\_\   |  /_____/_ << std::endl;
-		treeFile <<	           \  | /          / << std::endl;
-		treeFile <<	  __ _-----`  |{,-----------~ << std::endl;
-		treeFile <<	            \ }{ << std::endl;
-		treeFile <<	             }{{ << std::endl;
-		treeFile <<	             }}{ << std::endl;
-		treeFile <<	             {{} << std::endl;
-		treeFile <<	       , -=-~{ .-^- << std::endl;
-		treeFile <<		        `} << std::endl;
-		treeFile <<	              {	<< std::endl;
+		treeFile <<	"           \\/ |    |/ "<< std::endl;
+		treeFile <<	 "       \\/ / \\||/  /_/___/_ "<< std::endl;
+		treeFile <<	 "        \\/   |/ \\/ "<< std::endl;
+		treeFile <<	 "   _\\__\\_\\   |  /_____/_ "<< std::endl;
+		treeFile <<	 "          \\  | /          / "<< std::endl;
+		treeFile <<	 " __ _-----`  |{,-----------~ "<< std::endl;
+		treeFile <<	 "           \\ }{ "<< std::endl;
+		treeFile <<	 "            }{{ "<< std::endl;
+		treeFile <<	 "            }}{ "<< std::endl;
+		treeFile <<	 "            {{} "<< std::endl;
+		treeFile <<	 "      , -=-~{ .-^- "<< std::endl;
+		treeFile <<		"        `} "<< std::endl;
+		treeFile <<	 "             {	"<< std::endl;
 		treeFile << std::endl;
 		i++;
 	}		
 	treeFile.close();
 }
 
+std::string	ShrubberyCreationForm::getTarget() const
+{
+	return this->_target;
+}
