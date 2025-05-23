@@ -1,9 +1,9 @@
 #include "RobotomyRequestForm.hpp"
 #include <ostream>
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm("Robot", 0, 72, 45)
+RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotRequestForm", 0, 72, 45)
 {
-
+	this->_target = "tutu";
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& cpy) : AForm(cpy)
@@ -19,7 +19,10 @@ RobotomyRequestForm::~RobotomyRequestForm()
 RobotomyRequestForm&	RobotomyRequestForm::operator=(const RobotomyRequestForm& src)
 {
 	if (this != &src)
+	{
 		this->_signed = src._signed;
+		this->_target = src._target;
+	}
 	return *this;
 }
 
@@ -45,7 +48,7 @@ int	RobotomyRequestForm::execute(Bureaucrat &src) const
 	if (this->_signed && src.getGrade() <= this->_execute_it && src.getGrade() > 0)
 	{
 		std::cout << "* drilling noises  *" << std::endl;
-		std::cout << this->_target << " has been robotomized successfully 50\% of the time."
+		std::cout << this->_target << " has been robotomized successfully 50\% of the time." << std::endl;
 		return 1;
 	}
 	std::cout << "The robotomy failed." << std::endl;

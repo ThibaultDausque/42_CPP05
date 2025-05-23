@@ -4,6 +4,7 @@ RM = rm -rf
 SRC = main.cpp \
 		Bureaucrat.cpp \
 		ShrubberyCreationForm.cpp \
+		RobotomyRequestForm.cpp \
 		AForm.cpp
 OBJS_DIR = obj
 OBJS = $(SRC:%.cpp=$(OBJS_DIR)/%.o)

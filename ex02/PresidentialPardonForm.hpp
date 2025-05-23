@@ -4,6 +4,7 @@
 # include <iostream>
 # include <ostream>
 # include "Bureaucrat.hpp"
+# include "AForm.hpp"
 
 class Bureaucrat;
 
@@ -17,7 +18,10 @@ class PresidentialPardonForm : public AForm
 		PresidentialPardonForm(const PresidentialPardonForm& cpy);
 		PresidentialPardonForm&	operator=(const PresidentialPardonForm& src);
 		~PresidentialPardonForm();
-		void	informs(Bureaucrat& target);
+		int	execute(Bureaucrat &src) const;
 };
+
+std::ostream& operator<<(std::ostream& os, PresidentialPardonForm& src);
+
 
 #endif

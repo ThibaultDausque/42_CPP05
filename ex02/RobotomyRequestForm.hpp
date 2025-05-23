@@ -3,7 +3,7 @@
 
 # include <iostream>
 # include "Bureaucrat.hpp"
-# include "AForm.hpp";
+# include "AForm.hpp"
 
 class Bureaucrat;
 
