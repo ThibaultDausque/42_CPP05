@@ -40,8 +40,7 @@ std::ostream&	operator<<(std::ostream& os, const Bureaucrat& src)
 
 int	Bureaucrat::signForm(AForm &src)
 {
-	if (this->getGrade() == src.execGrade()
-		&& this->getGrade() == src.signGrade())
+	if (this->getGrade() <= src.signGrade())
 	{
 		std::cout << this->getName() << " sign " << src.getName() << std::endl;
 		src.beSigned(*this);
@@ -49,6 +48,17 @@ int	Bureaucrat::signForm(AForm &src)
 	}
 	std::cout << this->getName() << " couldn't sign " << src.getName()
 		<< " because he is dumb as fuck." << std::endl;
+	return 0;
+}
+
+int	Bureaucrat::executeForm(AForm const & form) const
+{
+	if (form.getSigned())
+	{
+		std::cout << this->_name << " executed " << form.getName() << std::endl;
+		return 1;
+	}
+	std::cout << this->_name << " can't execute " << form.getName() << std::endl;
 	return 0;
 }
 

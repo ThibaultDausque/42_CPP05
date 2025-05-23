@@ -18,8 +18,7 @@ class ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm(const ShrubberyCreationForm& cpy);
 		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& src);
 		~ShrubberyCreationForm();
-		void	asciiTrees(std::string target);
-		int	beSigned(Bureaucrat& src);
+		int	execute(Bureaucrat &src) const;
 		std::string	getTarget() const;
 };
 

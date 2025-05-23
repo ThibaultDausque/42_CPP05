@@ -38,48 +38,41 @@ std::ostream& operator<<(std::ostream& os, ShrubberyCreationForm& src)
 		return os;
 	}
 	os << "ShrubberyCreationForm " << src.getName() << ", sign grade "
-		<< src.signGrade() << ", execute grade " << src.execGrade() << " .";
+		<< src.signGrade() << ", execute grade " << src.execGrade() << ".";
 	return os;
 }
 
-int	ShrubberyCreationForm::beSigned(Bureaucrat& src)
+int	ShrubberyCreationForm::execute(Bureaucrat &src) const
 {
-	if (src.getGrade() <= this->_sign_it && this->signGrade() >= 1
-		&& this->signGrade() <= 150)
-	{
-		this->_signed = 1;
-		return 1;
-	}
-	else if (this->signGrade() < 1 || this->signGrade() > 150)
-		return 2;
-	return 0;
-}
-
-void	ShrubberyCreationForm::asciiTrees(std::string target)
-{
-	std::ofstream	treeFile(target + "_shrubbery");
+	std::ofstream	treeFile;
 	int		i;
 	
-	i = 0;
-	while (i < 3)
-	{	
-		treeFile <<	"           \\/ |    |/ "<< std::endl;
-		treeFile <<	 "       \\/ / \\||/  /_/___/_ "<< std::endl;
-		treeFile <<	 "        \\/   |/ \\/ "<< std::endl;
-		treeFile <<	 "   _\\__\\_\\   |  /_____/_ "<< std::endl;
-		treeFile <<	 "          \\  | /          / "<< std::endl;
-		treeFile <<	 " __ _-----`  |{,-----------~ "<< std::endl;
-		treeFile <<	 "           \\ }{ "<< std::endl;
-		treeFile <<	 "            }{{ "<< std::endl;
-		treeFile <<	 "            }}{ "<< std::endl;
-		treeFile <<	 "            {{} "<< std::endl;
-		treeFile <<	 "      , -=-~{ .-^- "<< std::endl;
-		treeFile <<		"        `} "<< std::endl;
-		treeFile <<	 "             {	"<< std::endl;
-		treeFile << std::endl;
-		i++;
-	}		
-	treeFile.close();
+	if (this->_signed && src.getGrade() <= this->_execute_it && src.getGrade() > 0)
+	{
+		treeFile.open((this->_target + "_shrubbery").c_str());
+		i = 0;
+		while (i < 3)
+		{	
+			treeFile <<	"           \\/ |    |/ "<< std::endl;
+			treeFile <<	 "       \\/ / \\||/  /_/___/_ "<< std::endl;
+			treeFile <<	 "        \\/   |/ \\/ "<< std::endl;
+			treeFile <<	 "   _\\__\\_\\   |  /_____/_ "<< std::endl;
+			treeFile <<	 "          \\  | /          / "<< std::endl;
+			treeFile <<	 " __ _-----`  |{,-----------~ "<< std::endl;
+			treeFile <<	 "           \\ }{ "<< std::endl;
+			treeFile <<	 "            }{{ "<< std::endl;
+			treeFile <<	 "            }}{ "<< std::endl;
+			treeFile <<	 "            {{} "<< std::endl;
+			treeFile <<	 "      , -=-~{ .-^- "<< std::endl;
+			treeFile <<		"        `} "<< std::endl;
+			treeFile <<	 "             {	"<< std::endl;
+			treeFile << std::endl;
+			i++;
+		}
+		treeFile.close();
+		return 1;
+	}
+	return 0;
 }
 
 std::string	ShrubberyCreationForm::getTarget() const

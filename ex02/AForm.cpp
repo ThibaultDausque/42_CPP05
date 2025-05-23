@@ -1,7 +1,4 @@
 #include "AForm.hpp"
-#include <atomic>
-#include <ostream>
-#include <regex>
 
 AForm::AForm(): _name("default"), _sign_it(42), _execute_it(42)
 {
@@ -61,6 +58,13 @@ int	AForm::execGrade() const
 int	AForm::signGrade() const
 {
 	return this->_sign_it;
+}
+
+int	AForm::execute(Bureaucrat &src) const
+{
+	if (this->_signed && src.getGrade() > 1 && src.getGrade() < 150)
+		return 1;
+	return 0;
 }
 
 int	AForm::beSigned(Bureaucrat &src)
