@@ -1,6 +1,6 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreation", 0, 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 0, 145, 137)
 {
 	this->_target = "toto";
 }
@@ -72,6 +72,7 @@ int	ShrubberyCreationForm::execute(Bureaucrat &src) const
 		treeFile.close();
 		return 1;
 	}
+	std::cout << src.getName() << " can't execute the ShrubberyCreationForm." << std::endl;
 	return 0;
 }
 

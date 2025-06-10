@@ -1,8 +1,8 @@
 #include "Form.hpp"
 
-Form::Form(): _name("paper"), _sign_it(0), _execute_it(42)
+Form::Form(): _name("paper"), _sign_it(43), _execute_it(42)
 {
-	this->_signed = 0;
+	this->_signed = 43;
 }
 
 Form::Form(const Form& cpy): _name("paper"), _sign_it(42), _execute_it(42)

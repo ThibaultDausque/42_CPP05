@@ -40,10 +40,11 @@ std::ostream&	operator<<(std::ostream& os, PresidentialPardonForm& src)
 
 int	PresidentialPardonForm::execute(Bureaucrat &src) const
 {
-	if (this->_signed && src.execGrade() <= this->_execute_it)
+	if (this->_signed && src.getGrade() <= this->_execute_it)
 	{
 		std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 		return 1;
 	}
+	std::cout << src.getName() << " can't execute the PresidentialPardonForm." << std::endl;
 	return 0;
 }

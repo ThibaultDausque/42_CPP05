@@ -2,7 +2,7 @@
 
 Bureaucrat::Bureaucrat(): _name("toto")
 {
-	this->_grade = 42;
+	this->_grade = 50;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& cpy)
