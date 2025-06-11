@@ -5,7 +5,7 @@ Bureaucrat::Bureaucrat(): _name("toto")
 	this->_grade = 0;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& cpy)
+Bureaucrat::Bureaucrat(const Bureaucrat& cpy): _name("toto")
 {
 	*this = cpy;
 }
