@@ -5,7 +5,7 @@ Bureaucrat::Bureaucrat(): _name("toto")
 	this->_grade = 1;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& cpy)
+Bureaucrat::Bureaucrat(const Bureaucrat& cpy): _name("toto")
 {
 	*this = cpy;
 }
@@ -36,6 +36,16 @@ std::ostream&	operator<<(std::ostream& os, const Bureaucrat& src)
 	}
 	os << src.getName() << ", bureaucrat grade " << src.getGrade() << ".";
 	return os;
+}
+
+const char*	Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return "* grade too high *";
+}
+
+const char*	Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return "* grade too low *";
 }
 
 int	Bureaucrat::signForm(AForm &src)

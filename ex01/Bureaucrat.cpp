@@ -5,7 +5,7 @@ Bureaucrat::Bureaucrat(): _name("toto")
 	this->_grade = 50;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& cpy)
+Bureaucrat::Bureaucrat(const Bureaucrat& cpy): _name("toto")
 {
 	*this = cpy;
 }
@@ -52,6 +52,16 @@ int	Bureaucrat::signForm(Form &src)
 		return 1;
 	}
 	return 0;
+}
+
+const char*	Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return "* grade too high *";
+}
+
+const char*	Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return "* grade too low *";
 }
 
 const std::string	Bureaucrat::getName() const

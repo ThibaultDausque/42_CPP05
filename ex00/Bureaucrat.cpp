@@ -38,6 +38,16 @@ std::ostream&	operator<<(std::ostream& os, const Bureaucrat& src)
 	return os;
 }
 
+const char*	Bureaucrat::gradeTooHighException::what() const throw()
+{
+	return "* grade too high *";
+}
+
+const char*	Bureaucrat::gradeTooLowException::what() const throw()
+{
+	return "* grade too low *";
+}
+
 const std::string	Bureaucrat::getName() const
 {
 	return this->_name;

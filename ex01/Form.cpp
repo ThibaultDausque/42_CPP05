@@ -2,7 +2,7 @@
 
 Form::Form(): _name("paper"), _sign_it(43), _execute_it(42)
 {
-	this->_signed = 43;
+	this->_signed = 0;
 }
 
 Form::Form(const Form& cpy): _name("paper"), _sign_it(42), _execute_it(42)
@@ -39,6 +39,16 @@ std::ostream&	operator<<(std::ostream& os, Form& src)
 	return os;
 }
 
+const char*	Form::GradeTooHighException::what() const throw()
+{
+	return "* form grade too high *";
+}
+
+const char*	Form::GradeTooLowException::what() const throw()
+{
+	return "* form grade too low *";
+}
+
 const std::string	Form::getName() const
 {
 	return this->_name;
@@ -71,6 +81,4 @@ int	Form::signGrade() const
 {
 	return this->_sign_it;
 }
-
-
 

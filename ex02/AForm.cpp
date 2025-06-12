@@ -45,6 +45,16 @@ std::ostream&	operator<<(std::ostream& os, AForm& src)
 	return os;
 }
 
+const char*	AForm::GradeTooHighException::what() const throw()
+{
+	return "* grade too high *";
+}
+
+const char*	AForm::GradeTooLowException::what() const throw()
+{
+	return "* grade too low *";
+}
+
 const std::string	AForm::getName() const
 {
 	return this->_name;	
@@ -62,7 +72,7 @@ int	AForm::signGrade() const
 
 int	AForm::execute(Bureaucrat &src) const
 {
-	if (this->_signed && src.getGrade() > 1 && src.getGrade() < 150)
+	if (this->_signed && src.getGrade() >= 1 && src.getGrade() <= 150)
 		return 1;
 	return 0;
 }
